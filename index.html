@@ -11,30 +11,24 @@
             box-sizing: border-box;
         }
         body {
+            background-color: #000;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #111;
-        }
-        .video-container {
-            width: 100%;
-            max-width: 1000px;
-            padding: 20px;
         }
         video {
             width: 100%;
+            max-width: 1200px;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <video controls autoplay muted loop playsinline>
-            <source src="/someonelife-re.mp4" type="video/mp4">
-        </video>
-    </div>
+    <video autoplay muted loop playsinline controls poster="">
+        <source src="someonelife-re.mp4" type="video/mp4">
+        브라우저가 동영상을 지원하지 않습니다.
+    </video>
 </body>
 </html>
