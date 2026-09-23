@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renewal Preview</title>
+    <title>Someone Life Renewal Preview</title>
     <style>
         * {
             margin: 0;
@@ -11,24 +11,91 @@
             box-sizing: border-box;
         }
         body {
-            background-color: #000;
+            background-color: #111;
+            color: #fff;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 20px;
+        }
+        
+        /* 탭 버튼 스타일 */
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            background: #222;
+            color: #888;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:hover {
+            color: #fff;
+            border-color: #555;
+        }
+        .tab-btn.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* 비디오 영역 스타일 */
+        .video-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
         }
         video {
             width: 100%;
-            max-width: 1200px;
             height: auto;
             display: block;
         }
     </style>
 </head>
 <body>
-    <video autoplay muted loop playsinline controls poster="">
-        <source src="https://kyohyunkim.github.io/vdeo/someonelife-re.mp4" type="video/mp4">
-        브라우저가 동영상을 지원하지 않습니다.
-    </video>
+
+    <!-- 영상 전환 탭 버튼 -->
+    <div class="tab-container">
+        <button class="tab-btn active" onclick="switchVideo('main.mp4', this)">1. 메인 페이지</button>
+        <button class="tab-btn" onclick="switchVideo('list.mp4', this)">2. 분류 페이지</button>
+        <button class="tab-btn" onclick="switchVideo('detail.mp4', this)">3. 상세 페이지</button>
+    </div>
+
+    <!-- 비디오 재생 영역 -->
+    <div class="video-wrapper">
+        <video id="preview-video" autoplay muted loop playsinline controls>
+            <source id="video-source" src="main.mp4" type="video/mp4">
+            브라우저가 동영상을 지원하지 않습니다.
+        </video>
+    </div>
+
+    <script>
+        function switchVideo(fileName, btn) {
+            const video = document.getElementById('preview-video');
+            const source = document.getElementById('video-source');
+
+            // 버튼 활성화 클래스 교체
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 영상 소스 교체 및 다시 재생
+            source.src = fileName;
+            video.load();
+            video.play();
+        }
+    </script>
 </body>
 </html>
